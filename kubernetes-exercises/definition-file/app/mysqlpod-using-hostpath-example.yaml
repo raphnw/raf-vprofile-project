@@ -1,0 +1,24 @@
+---
+# This manifest mounts /data/foo on the host as /foo inside the
+# single container that runs within the hostpath-example-linux Pod.
+#
+# The mount into the container is read-only.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dbpod
+spec:
+  containers:
+  - image: mysql:5.7
+    name: mysql
+    volumeMounts:
+    - mountPath: /var/lib/mysql
+      name: dbvol
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: admin
+  volumes:
+  - name: dbvol
+    hostPath:
+      path: /data
+      type: DirectoryOrCreate
