@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: db-pod
+  labels:
+    app: db
+    project: infinity
+spec:
+  containers:
+    - name: mysql-container
+      image: mysql:5.7
+      env:
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: db-config 
+              key: db_host
