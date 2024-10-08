@@ -48,9 +48,6 @@ EOT
 # Set Nexus to run as the nexus user
 echo 'run_as_user="nexus"' > /opt/nexus/$NEXUSDIR/bin/nexus.rc
 
-# Ensure the Nexus scripts are executable
-chmod +x /opt/nexus/$NEXUSDIR/bin/nexus
-
 # Reload systemd and start Nexus
 systemctl daemon-reload
 systemctl start nexus
